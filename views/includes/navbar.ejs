@@ -10,6 +10,14 @@
       
     }
 
+.logo{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: rgb(246, 13, 13);
+   
+}
+
     .search-input{
         border-radius: 2rem;
         font-size: 1rem;
@@ -19,7 +27,9 @@
 
 <nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top">
   <div class="container-fluid">
+    
     <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <h1 class="logo me-auto">WanderLust</h1>
     <button class="navbar-toggler" 
     type="button" 
     data-bs-toggle="collapse" 
@@ -27,9 +37,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">        
+      <!--<div class="navbar-nav ms-auto">        
         <a class="nav-link" href="/listings"><b>Explore</b></a>       
-      </div>
+      </div>-->
       <div class="navbar nav ms-auto">
         <form class="d-flex" role="search">
         <input class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search"/>

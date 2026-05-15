@@ -2,8 +2,8 @@
 
     <body>
         <div class="row mt-3 mb-3">
-            <div class="col-8 offset-2">
-                <div class="card col-6 offset-3 show-card listing-card">
+            <div class="col-10 offset-1">
+                <div class="card col-8 offset-2 show-card listing-card">
                     <h4>
                         <%= listing.title%>
                     </h4><br>
@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <p class="card-text">
                             <i>
-                                <%= listing.owner.username%>
+                                <b>Owner: <%= listing.owner.username%></b>
                             </i> <br>
 
                             <%= listing.description%> <br>
@@ -25,11 +25,10 @@
             </div>
             <% if( currentUser && currentUser._id.equals(listing.owner._id)){%>
 
-                <div class="btns offset-4">
-                    <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark col-1 edit-btn">Edit</a>
-
+                <div class="btns col-8 offset-4">
+                    <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark edit-btn">Edit</a>
                     <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-                        <button class="btn btn-dark offset-6">Delete</button>
+                        <button class="btn btn-dark delete-btn ms-4">Delete</button>
                     </form>
                 </div>
                 <%}%>
@@ -71,12 +70,13 @@
                                 <p><b>All Reviews</b></p>
                                 <div class="row">
                                     <%for(review of listing.reviews){%>
-                                        <div class="card col-5 ms-4 mb-3">
-                                            <div class="card-body">
+                                        <div class="card ms-4 mb-3 card-body-review">
+                                            <div class="card-body ">
                                                 <h5 class="card-title">
                                                     <%=review.author.username%>
                                                 </h5>
-                                                <p class="starability-result" data-rating=<%=review.rating%>>
+                                                
+                                                <p class="starability-result stars" data-rating=<%=review.rating%>>
                                                     Rated: <%=review.rating%> stars
                                                 </p>
                                                 <p class="card-text">
@@ -84,11 +84,14 @@
                                                 </p>
 
                                             </div>
+
+                                            <% if( currentUser && currentUser._id.equals(review.author._id)){%>
                                             <form
                                                 action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE"
                                                 method="POST">
-                                                <button class="btn btn-sm btn-dark mb-1 mt-1">Delete</button>
+                                                <button class="btn btn-sm btn-dark mb-1 mt-1 delete-btn">Delete</button>
                                             </form>
+                                            <%}%>
                                         </div>
 
                                         <%}%>
