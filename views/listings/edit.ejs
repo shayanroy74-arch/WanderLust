@@ -28,6 +28,56 @@
         type="file" class="form-control">
         </div>
 
+        <div class="row mb-3">
+                        <div class=" col-3">
+                            <div class="btn-group" style="border: 1px solid black;">
+                                <button type="button" class="btn btn-light" data-bs-toggle="dropdown">
+                                    <label for="category" class="form-label">Category</label>
+                                </button>
+
+                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+
+                                <ul class="dropdown-menu">
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Beach">Beach</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Mountain">Mountain</button></li>
+
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Farm">Farm</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Pool">Pool</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="City">City</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Castle">Castle</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Luxury">Luxury</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Forest">Forest</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Lake">Lake</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="selected-Categories col-9">
+
+                        </div>
+                        <input type="hidden" name="listing[category]" id="category-input">
+                    </div>
+
         <div class="mb-3">
         <label for="price" class="form-label">Price</label>
         <input name="listing[price]" value="<%=listing.price%>" 
@@ -57,4 +107,51 @@
         </div>
     </div>
     
+
+<script>
+    
+         const selectedCategories = new Set(
+                <%-JSON.stringify(listing.category)%>
+            );
+        renderCategories();
+    
+            
+
+            function addCategory(event) {
+                let { value } = event.target;
+                selectedCategories.add(value);
+                renderCategories();
+            }
+
+            function removeCategory(value) {
+
+                selectedCategories.delete(value);
+
+                renderCategories();
+            }
+
+            function renderCategories() {
+
+                const container = document.getElementsByClassName("selected-Categories")[0];
+
+                container.innerHTML = "";
+
+                selectedCategories.forEach((category) => {
+
+                    container.innerHTML += `
+            <button type="button" class="btn btn-outline-danger m-1">
+                ${category}
+                <span onclick="removeCategory('${category}')">
+                    &times;
+                </span>
+            </button>
+        `;
+        
+                });
+
+                document.getElementById("category-input").value =
+        JSON.stringify([...selectedCategories]);
+            }
+        </script>
+
 </body>

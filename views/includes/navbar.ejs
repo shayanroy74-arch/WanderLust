@@ -12,7 +12,9 @@
 
 .logo{
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-self: center;
     font-weight: 700;
     color: rgb(246, 13, 13);
    
@@ -23,33 +25,62 @@
         font-size: 1rem;
         padding: 0rem,3rem,0rem,3rem;
     }
+
+.navbar-toggler{
+    border: 2px solid rgb(246, 13, 13);
+    border-radius: 80%;
+    text-decoration: none;
+}
+
+.navbar-toggler:active,
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+.add-list{
+ border-radius: 1.5rem !important;
+  border: 2px solid rgb(235, 16, 16) !important;
+  
+}
+.add-list a{
+  text-decoration: none;
+  color: red;
+  padding: 15px;
+  
+}
+@media (max-width: 829px){
+   .add-list-text{
+      display: none;
+   }
+}
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top">
   <div class="container-fluid">
     
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-    <h1 class="logo me-auto">WanderLust</h1>
-    <button class="navbar-toggler" 
-    type="button" 
-    data-bs-toggle="collapse" 
-    data-bs-target="#navbarNavAltMarkup" >
-      <span class="navbar-toggler-icon"></span>
+    <a class="d-flex navbar-brand me-auto" href="/listings"><i class="fa-regular fa-compass"></i><h1 class="d-flex logo ms-auto me-auto">WanderLust</h1></a>
+    
+    
+      <button class="navbar-toggler ms-auto me-auto"     
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarNavAltMarkup" >
+      <span class="signup-toggler-icon"><i class="fa-solid fa-user" style="color: rgb(246, 13, 13);  "></i></span>
     </button>
+    
+    
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <!--<div class="navbar-nav ms-auto">        
         <a class="nav-link" href="/listings"><b>Explore</b></a>       
       </div>-->
       <div class="navbar nav ms-auto">
-        <form class="d-flex" role="search">
+        <form class="d-none d-md-flex d-lg-flex" role="search">
         <input class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search"/>
         <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
       </form>
       </div>
-      
-      
+     
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">Add Listings</a>
+        
         <%if(!currentUser){%>
           <a class="nav-link" href="/signup"><b>Signup</b></a>
           <a class="nav-link" href="/login"><b>Login</b></a>
@@ -61,5 +92,11 @@
         
       </div>
     </div>
+
+     <div class="add-list ms-auto">
+      <a href="/listings/new" role="button"><b><i class="fa-solid fa-plus" style="color: rgb(226, 12, 12);"></i>
+        <span class="add-list-text">Add Listing</span></b></a>
+    </div>
+    
   </div>
 </nav>

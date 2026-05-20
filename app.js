@@ -40,7 +40,8 @@ main()
 })
 
 async function main() {
-    await mongoose.connect(dbURL)
+    await mongoose.connect(dbURL);
+    //await mongoose.connect(MONGO_URL);
 }
 
 app.set("view engine","ejs");
@@ -60,14 +61,22 @@ const store = MongoStore.create({
     }
 });
 
+
+/*const store = MongoStore.create({
+    mongoUrl: MONGO_URL,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: process.env.SECRET,
+    }
+});*/
 store.on("error", function(e){
     console.log("Session store error", e);
 });
 
 
 const sessionOptions = {
-    store: store,
-    secret: process.env.SECRET,
+   store: store,
+    secret: process.env.SECRET,    
     resave: false,
     saveUninitialized: true,
     cookie: {

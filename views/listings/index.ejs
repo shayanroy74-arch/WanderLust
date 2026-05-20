@@ -1,110 +1,173 @@
 <%layout("/layouts/boilerplate.ejs")%>
 
     <style>
-        #filters{
-            display: flex;
+        #filters ul{
+            flex-wrap: nowrap;
             gap: 2rem;
             margin-top: 1rem;
-            justify-content: flex-start; 
-            overflow-x: auto;           
+            justify-content: flex-start;
+            overflow-x: auto !important;
+            
         }
 
-        .filter{
-            text-align: center;    
+        #filters a{
+            text-decoration: none;
+            
+        }
+       
+        .filter {
+            text-align: center;
             font-weight: bold;
             opacity: 0.7;
+            border: none;
+            
         }
 
-        .filter p{
+        .filter p {
             font-size: .8rem;
         }
 
-       .filter:hover{
+        .filter:hover {
             opacity: 1;
             cursor: pointer;
         }
-        </style>
+    </style>
 
 
     <body>
-        
-       <!--<h1>ALL LISTINGS</h1>-->
+        <div class="navbar nav col-10 offset-1">
+            <form class="d-flex d-md-none d-lg-none" role="search">
+                <input class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search" />
+                <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+            </form>
+        </div>
+        <!--<h1>ALL LISTINGS</h1>-->
+<div id="filters">
+    <ul  class="nav nav-underline">
 
-       <div id="filters">
-            <div class="filter">
-                <div>
-                    <i class="fa-solid fa-fire"></i>
-                </div>                
-                <p>Trending</p>
+    <li class="nav-item">
+        <a class="nav-link filter  <%= category === 'Trending' ? 'active' : '' %>" 
+         href="/listings?category=Trending">
+            <div>
+                <i class="fa-solid fa-fire"></i>
             </div>
-            <div class="filter">
-                <div>
-                    <i class="fa-solid fa-bed"></i>
-                </div>                
-                <p>Rooms</p>
+            <p>Trending</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link filter  <%= category === 'Beach' ? 'active' : '' %>" 
+           href="/listings?category=Beach">
+            <div>
+                <i class="fa-solid fa-umbrella-beach"></i>
             </div>
-             <div class="filter">
-                <div>
-                    <i class="fa-solid fa-mountain-city"></i>
-                </div>                
-                <p>Iconic Cities</p>
+            <p>Beach</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link filter  <%= category === 'Mountain' ? 'active' : '' %>" 
+           href="/listings?category=Mountain">
+            <div>
+                <i class="fa-solid fa-mountain"></i>
             </div>
-             <div class="filter">
-                <div>
-                    <i class="fa-solid fa-mountain"></i>
-                </div>                
-                <p>Mountains</p>
+            <p>Mountain</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link filter  <%= category === 'Farm' ? 'active' : '' %>" 
+           href="/listings?category=Farm">
+            <div>
+                <i class="fa-solid fa-horse"></i>
             </div>
-             <div class="filter">
-                <div>
-                    <i class="fa-brands fa-fort-awesome"></i>
-                </div>                
-                <p>Castles</p>
+            <p>Farm</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link filter  <%= category === 'Pool' ? 'active' : '' %>" 
+           href="/listings?category=Pool">
+            <div>
+                <i class="fa-solid fa-person-swimming"></i>
             </div>
-             <div class="filter">
-                <div>
-                    <i class="fa-solid fa-person-swimming"></i>
-                </div>                
-                <p>Amazing Pools</p>
+            <p>Pool</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link filter  <%= category === 'City' ? 'active' : '' %>" 
+           href="/listings?category=City">
+            <div>
+                <i class="fa-solid fa-city"></i>
             </div>
-            <div class="filter">
-                <div>
-                    <i class="fa-solid fa-campground"></i>
-                </div>                
-                <p>Camping</p>
+            <p>City</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link filter  <%= category === 'Castle' ? 'active' : '' %>" 
+           href="/listings?category=Castle">
+            <div>
+                <i class="fa-brands fa-fort-awesome"></i>
             </div>
-            <div class="filter">
-                <div>
-                    <i class="fa-solid fa-cow"></i>
-                </div>                
-                <p>farmhouse</p>
-            </div><div class="filter">
-                <div>
-                    <i class="fa-regular fa-snowflake"></i>
-                </div>                
-                <p>Arctics</p>
+            <p>Castle</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link filter  <%= category === 'Luxury' ? 'active' : '' %>" 
+           href="/listings?category=Luxury">
+            <div>
+                <i class="fa-solid fa-crown"></i>
             </div>
-       </div>
+            <p>Luxury</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link filter  <%= category === 'Forest' ? 'active' : '' %>" 
+           href="/listings?category=Forest">
+            <div>
+                <i class="fa-solid fa-tree"></i>
+            </div>
+            <p>Forest</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link filter  <%= category === 'Lake' ? 'active' : '' %>" 
+           href="/listings?category=Lake">
+            <div>
+                <i class="fa-solid fa-water"></i>
+            </div>
+            <p>Lake</p>
+        </a>
+    </li>
+
+</ul>
+</div>
+        
 
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1  mt-3 mb-3">
             <% for(let listing of allListings){ %>
                 <a href="/listings/<%=listing._id%>" class="listing-link">
                     <div class="card col listing-card">
-                        
-                            <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image"
-                                style="height: 18rem;">
-                            <div class="card-img-overlay"></div>
-                            <div class="card-body">
 
-                                <p class="card-text">
-                                    <b>
-                                        <%=listing.title%>
-                                    </b> <br>
+                        <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image"
+                            style="height: 18rem;">
+                        <div class="card-img-overlay"></div>
+                        <div class="card-body">
 
-                                    &#8377; <%= listing.price.toLocaleString("en-IN") %>/night
-                                </p>
-                            </div>
-                        
+                            <p class="card-text">
+                                <b>
+                                    <%=listing.title%>
+                                </b> <br>
+
+                                &#8377; <%= listing.price.toLocaleString("en-IN") %>/night
+                            </p>
+                        </div>
+
                     </div>
                 </a>
 

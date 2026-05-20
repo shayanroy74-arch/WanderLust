@@ -1,50 +1,143 @@
-<%layout("/layouts/boilerplate.ejs")%>
+<%layout("./layouts/boilerplate.ejs")%>
 
     <body>
         <div class="row">
             <div class="col-8 offset-2">
                 <h2>Add New Listings</h2>
-                <form method="POST" action="/listings" 
-                novalidate class="needs-validation" enctype="multipart/form-data">
+                <form method="POST" action="/listings" novalidate class="needs-validation"
+                    enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input name="listing[title]" placeholder="enter title" type="text" 
-                        class="form-control" required>
+                        <input name="listing[title]" placeholder="enter title" type="text" class="form-control"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="listing[description]" placeholder="enter desription"
-                            class="form-control" required></textarea>
+                        <textarea name="listing[description]" placeholder="enter desription" class="form-control"
+                            required></textarea>
 
                     </div>
-                    <div class="mb-3">
+
+                    <div class="mb-4 ">
                         <label for="image" class="form-label">Image</label>
                         <input name="listing[image]" type="file" class="form-control" required>
-
                     </div>
+
+                    <div class="row mb-3">
+                        <div class=" col-3">
+                            <div class="btn-group" style="border: 1px solid black;">
+                                <button type="button" class="btn btn-light" data-bs-toggle="dropdown">
+                                    <label for="category" class="form-label">Category</label>
+                                </button>
+
+                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+
+                                <ul class="dropdown-menu">
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Beach">Beach</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Mountain">Mountain</button></li>
+
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Farm">Farm</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Pool">Pool</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="City">City</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Castle">Castle</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Luxury">Luxury</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Forest">Forest</button></li>
+
+                                    <li><button class="dropdown-item category-btn" onclick="addCategory(event)"
+                                            type="button" value="Lake">Lake</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="selected-Categories col-9">
+
+                        </div>
+                        <input type="hidden" name="listing[category]" id="category-input">
+                    </div>
+
+
+
                     <div class="row">
                         <div class="mb-3 col-md-4">
                             <label for="price" class="form-label">Price</label>
-                            <input name="listing[price]" placeholder="enter price" 
-                            type="text" class="form-control" required>
+                            <input name="listing[price]" placeholder="enter price" type="text" class="form-control"
+                                required>
 
                         </div>
                         <div class="mb-3 col-md-8">
                             <label for="country" class="form-label">Country</label>
-                            <input name="listing[country]" placeholder="enter country" 
-                            type="text" class="form-control" required>
+                            <input name="listing[country]" placeholder="enter country" type="text" class="form-control"
+                                required>
 
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="location" class="form-label">Location</label>
-                        <input name="listing[location]" placeholder="enter location" 
-                        type="text" class="form-control" required>
+                        <input name="listing[location]" placeholder="enter location" type="text" class="form-control"
+                            required>
                     </div>
-                    <button class="btn btn-dark add-btn mb-3">Submit</button> 
+                    <button class="btn btn-dark add-btn mb-3">Submit</button>
                 </form>
             </div>
         </div>
+
+        <script>
+            const selectedCategories = new Set();
+
+            function addCategory(event) {
+                let { value } = event.target;
+                selectedCategories.add(value);
+                renderCategories();
+            }
+
+            function removeCategory(value) {
+
+                selectedCategories.delete(value);
+
+                renderCategories();
+            }
+
+            function renderCategories() {
+
+                const container = document.getElementsByClassName("selected-Categories")[0];
+
+                container.innerHTML = "";
+
+                selectedCategories.forEach((category) => {
+
+                    container.innerHTML += `
+            <button type="button" class="btn btn-outline-danger m-1">
+                ${category}
+                <span onclick="removeCategory('${category}')">
+                    &times;
+                </span>
+            </button>
+        `;
+        
+                });
+
+                document.getElementById("category-input").value =
+        JSON.stringify([...selectedCategories]);
+            }
+        </script>
 
     </body>
