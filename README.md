@@ -45,7 +45,7 @@ Render Deployment
 📸 Screenshots
 Home Page
 
-![homepage](images/homepage.png)
+![homepage](public/images/homepage.png)
 Browse all listings with responsive cards and search functionality.
 Listing Details
 View detailed property information, pricing and reviews.
