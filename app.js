@@ -115,10 +115,12 @@ app.use((req,res,next)=>{
     res.send(newUser);
 });
 */
-
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
-app.use("/", userRouter);
+app.use("/user", userRouter);
 
 app.use((req,res,next)=>{
     next(new ExpressError(404, "Page Not Found!"));

@@ -13,8 +13,8 @@ module.exports.signup = async(req,res)=>{
         req.flash("success", "Welcome to Wanderlust!");
         
         req.login(registeredUser, (err)=>{
-            if(err){
-                return next(err);
+            if(error){
+                return next(error);
             }            
             req.flash("success", "Welcome to Wanderlust!");
             if(res.locals.redirectUrl){
@@ -25,7 +25,7 @@ module.exports.signup = async(req,res)=>{
         });
     }catch(error){
         req.flash("error", error.message);
-        return res.redirect("/signup");
+        return res.redirect("/user/signup");
     };
 };
 
