@@ -57,23 +57,41 @@ Secure signup and login system.
 📂 Folder Structure
 WanderLust/
 │
+|
 ├── controllers/
+|
 ├── models/
+|
 ├── routes/
+|
 ├── views/
+|
 ├── public/
+|
 ├── utils/
+|
 ├── app.js
+|
 ├── cloudConfig.js
+|
 ├── middlewares.js
+|
 ├── schemaValidation.js
+|
 └── package.json
+
+
 ⚙️ Installation & Setup
+
 1️⃣ Clone the Repository
+
 git clone <your-repository-url>
 cd WanderLust
+
 2️⃣ Install Dependencies
+
 npm install
+
 3️⃣ Create Environment Variables
 
 Create a .env file in the root directory.
